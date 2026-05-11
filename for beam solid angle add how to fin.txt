@@ -1,0 +1,40 @@
+for beam solid angle add how to find it using the power density as well
+
+include how to find the complex vector effective length
+
+include equations for the half power beamwidth
+
+include information on how to find polarization
+
+include how to find the element factor and the array factor
+
+include information about when i need to consider image theory and the GPF
+
+include how to find effective area and physical area for different antennas
+
+give equations for different aperture tapers and explain what they do
+
+explain how to find received power, transmitted power transmit gain receive gain and wavelength
+
+explain how to find radar cross section
+
+explain how to find the squared gain pattern indicating two way travel weighting
+
+explain more deeply how too find the true range and the doppler shift
+
+explain how to find the IPP
+
+explain how to find the Nyquist frequency
+
+explain how to find the maximum delay spread and the maximum doppler spread and what aliasing is
+
+give the autocorrelation function and explain it
+
+include more information on the complementary phase codes and what it means
+
+explain how to find maximal length PRN sequences 
+
+explain how to find the complex pulse envelope the time delay the doppler frequency shift and a deeper dive into the ambiguity function
+
+explain the elevation angle in more detail
+

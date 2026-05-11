@@ -1,0 +1,80 @@
+make sure that every equation used on the homeworks and midterm to find the solution and every step is explained mathematically and conceptually
+
+make sure that every equation used on the homeworks and midterm are included in the formula section and explained deeply
+
+explain how to find the half power beamwidth
+
+get rid of the numbers it from the list in my chat above they are irrelevant
+
+explain for the midterm question 1 how we know that Gt = Gr
+
+explain give the equation for bandwidth
+
+explain how to verify HPBW and sidelobes
+
+make sure every question is transcribed in full and that the full solutions to each question are given and explained mathematically and conceptually
+
+give the full field equations for every type of antenna and array
+
+explain how to understand and visualize radar lobes for each question
+
+explain how to calculate received power using different formulae and for different types of antenna and arrays
+
+explain how to find SNR and what it represents
+
+how to find the power to different types of antenna and array and polarizations
+
+explain how to understand and answer questions on endfire arrays
+
+give the HPBW for every antenna type and array type
+
+explain how to formulate antenna and array patterns and also how to steer antennas and arrays
+
+explain when i need to use the ground plane factor
+
+make sure every question from the homeworks and the midterm are transcribed directly so i understand the wording of questions better
+
+explain how to find Nap
+
+explain tapering and how it effects antennas and arrays give equations and simplifications related to tapering
+
+explain convolution theorem in the context of tapering and give equations and simplifications related to it
+
+explain how to calculate the Fresnel transition
+
+explain how to evaluate beam shape
+
+show how to calculate cascade noise temperature and what LNA is and what it means when it is moved, give generalizations so i understand how it works in different contexts
+
+explain how to find the matched filter response and give equations and simplifications related to it
+
+explain what ALTAIR is and give equations and simplifications related to it
+
+show how to derive the PDF in the context of radar and give equations and simplifications related to it
+
+give identities, proofs, theorems, and definitions that are used in radar to help answer questions
+
+explain how to design a FFT processing scheme and give equations and simplifications related to it
+
+explain how to find true target range and give equations and simplifications related to it
+
+explain how to find doppler shift and give equations and simplifications related to it (what does it mean when the PRF changes)
+
+explain overspread, how to verify it and give equations and simplifications related to it
+
+explain how to make complementary phase codes, explain what bauds are and how to make a complementary code with n bauds
+
+explain what the LSFR sequence is for any p and how to find its sequence length and how to find p from the sequence length
+
+explain matched filter output and how to evaluate it and give equations and simplifications related to it
+
+explain how to analyze an ambiguity function and give equations and simplifications related to it
+
+explain what a barker is in the context of radar
+
+for give generalized geometry equations and simplifications that could be helpful (specifically when it comes to homework 8 question 2)
+
+explain how to find the MUF and what frequencies will work with the MUF
+
+explain how to find the attack angle and the trajectory of an ray entering a medium
+
