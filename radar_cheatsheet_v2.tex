@@ -1,0 +1,474 @@
+\documentclass[6pt,landscape]{article}
+\usepackage[landscape,margin=0.22in,top=0.18in,bottom=0.18in]{geometry}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+\setlength{\columnseprule}{0.3pt}
+\setlength{\columnsep}{3.5pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3pt}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\titleformat{\section}{\normalfont\bfseries\fontsize{6.5}{7}\selectfont\color{blue!80!black}}{}{0pt}{}[\vspace{-2pt}\hrule\vspace{0.5pt}]
+\titlespacing{\section}{0pt}{2pt}{0.5pt}
+\titleformat{\subsection}{\normalfont\bfseries\fontsize{6}{6.5}\selectfont\color{red!70!black}}{}{0pt}{}
+\titlespacing{\subsection}{0pt}{1pt}{0pt}
+
+\setlist[itemize]{leftmargin=5pt,noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt,label=\tiny$\bullet$}
+\newcommand{\bx}[1]{\colorbox{yellow!25}{$\displaystyle #1$}}
+
+\begin{document}
+\fontsize{6}{7}\selectfont
+\begin{multicols}{3}
+
+%%%%%%%%%%% PAGE 1 COL 1 %%%%%%%%%%%
+\section*{EM POWER \& POYNTING VECTOR}
+\textbf{Time-avg power density} = real part of complex Poynting vector:
+$\langle\vec{S}\rangle=\tfrac{1}{2}\text{Re}(\vec{E}\times\vec{H}^*)$ [W/m$^2$], radially outward $\hat{r}$
+
+\textbf{Plane wave free space:} $\langle S\rangle=|E|^2/(2\eta_0)=|E|^2/240\pi$
+
+$\eta_0=Z_0=\sqrt{\mu_0/\varepsilon_0}\approx120\pi\approx377\,\Omega;\quad k_0=2\pi/\lambda=\omega/c$
+
+\textbf{Key:} $\vec{E}=E_\theta\hat{\theta}$, $\vec{H}=H_\phi\hat{\phi}$ $\Rightarrow$ $\hat{\theta}\times\hat{\phi}=\hat{r}$ (power flows outward)
+
+\textbf{Elementary dipole full fields} (length $dl$, current $I$, along $\hat{z}$):
+\vspace{-2pt}
+\begin{align*}
+H_\phi&=\frac{Idl\sin\theta}{4\pi}\!\left(\frac{jk}{r}+\frac{1}{r^2}\right)\!e^{-jkr}\\[-2pt]
+E_\theta&=\frac{Idl\sin\theta\,Z_0}{4\pi k}\!\left(\frac{jk^2}{r}+\frac{k}{r^2}-\frac{j}{r^3}\right)\!e^{-jkr}
+\end{align*}
+\vspace{-4pt}
+Expanding $E_\theta H_\phi^*$: all intermediate $1/r^3,1/r^4$ terms cancel $\Rightarrow$\\
+$\langle S_r\rangle=\tfrac{1}{2}\text{Re}(E_\theta H_\phi^*)=\frac{Z_0 k^2 I^2 dl^2\sin^2\theta}{32\pi^2 r^2}$ (only real $k^3/r^2$ survives)
+
+\textbf{Far-field only} ($r\gg\lambda$): $E_\theta=\frac{jkZ_0 Idl\sin\theta}{4\pi r}e^{-jkr}$, $H_\phi=E_\theta/Z_0$
+
+\section*{TOTAL REAL POWER \& RADIATION RESISTANCE}
+$P_\text{rad}=\oint\langle\vec{S}\rangle\cdot d\vec{A}=\int_0^{2\pi}\!\int_0^\pi U(\theta,\phi)\sin\theta\,d\theta\,d\phi$
+
+Use $\int_0^\pi\sin^3\theta\,d\theta=4/3$:
+
+\textbf{Elementary dipole:} $P_\text{rad}=40\pi^2 I^2(dl/\lambda)^2$ W, $R_\text{rad}=80\pi^2(dl/\lambda)^2$
+
+\textbf{Short dipole} (triangular current): $R_\text{rad}=20\pi^2(L/\lambda)^2$, $D=1.5$, $h_\text{eff}=L/2$
+
+\textbf{Half-wave dipole:} $R_\text{rad}\approx73\,\Omega$, $D\approx1.64$, HPBW$=78^\circ$, $A_\text{eff}=0.13\lambda^2$
+
+\textbf{General:} $P_\text{rad}=\tfrac{1}{2}|I_\text{feed}|^2 R_\text{rad}$ $\Rightarrow$ $R_\text{rad}=2P_\text{rad}/|I_\text{feed}|^2$
+
+\textit{Tip: $I_\text{feed}=I_0\sin(k_0 L/2)$ for arbitrary dipole; for $L=\lambda/2$: $I_\text{feed}=I_0$; for $L=1.5\lambda$: $I_\text{feed}=-I_0$}
+
+\section*{ANTENNA TYPES — FULL EQUATIONS}
+
+\subsection*{Arbitrary-Length Dipole ($L$ along $\hat{z}$)}
+$I(z)=I_0\sin k_0(L/2-|z|)$
+$U(\theta)=\frac{Z_0 I_0^2}{8\pi^2}\!\left[\frac{\cos(k_0\frac{L}{2}\cos\theta)-\cos(k_0\frac{L}{2})}{\sin\theta}\right]^{\!2}$
+
+\subsection*{Half-Wave Dipole ($k_0 L/2=\pi/2$, $\cos(\pi/2)=0$)}
+$f(\theta)=\left[\frac{\cos(\frac{\pi}{2}\cos\theta)}{\sin\theta}\right]^2$;\quad $P_\text{rad}=\frac{Z_0 I_0^2}{4\pi}(1.219)=36.56 I_0^2$
+
+\subsection*{1.5$\lambda$ Dipole ($k_0 L/2=3\pi/2$, $\cos(3\pi/2)=0$)}
+$U(\theta)=\frac{Z_0 I_0^2}{8\pi^2}\left[\frac{\cos(1.5\pi\cos\theta)}{\sin\theta}\right]^2$; $P_\text{rad}=52.74 I_0^2$
+
+$D_\text{max}=2.22$ at $\theta\approx42.5^\circ$ (NOT at broadside!); $R_\text{rad}=105.5\,\Omega$
+
+\subsection*{Dipole orientation — replace $\theta$ with $\gamma$:}
+$\cos\gamma=\hat{d}\cdot\hat{r}$, $\sin^2\gamma=1-(\hat{d}\cdot\hat{r})^2$; $\hat{r}=\sin\theta\cos\phi\,\hat{x}+\sin\theta\sin\phi\,\hat{y}+\cos\theta\,\hat{z}$
+
+\textbf{x-dipole:} $f=\frac{\cos^2(\frac{\pi}{2}\sin\theta\cos\phi)}{1-\sin^2\theta\cos^2\phi}$\quad\textbf{y-dipole:} $f=\frac{\cos^2(\frac{\pi}{2}\sin\theta\sin\phi)}{1-\sin^2\theta\sin^2\phi}$
+
+\subsection*{Aperture — Circular (radius $a=D/2$, uniform)}
+$F(\theta)\propto\frac{2J_1(ka\sin\theta)}{ka\sin\theta}$; 1st null: $ka\sin\theta=3.832$; 1st SL: $-17.6$ dB
+
+HPBW$=1.02\lambda/D$; $D_\text{max}=4\pi A_\text{eff}/\lambda^2=4\pi^2 a^2\eta_{ap}/\lambda^2$
+
+\textit{Cosine$^n$ taper $E(r)\propto\cos^n(\pi r/D)$: $n=0\to\eta_{ap}=1.0$; $n=1\to0.72$; $n=2\to0.51$}
+
+\subsection*{Aperture — Rectangular ($L_x\times L_y$, uniform)}
+$F\propto\text{sinc}\!\left(\frac{\pi L_x\sin\theta\cos\phi}{\lambda}\right)\!\cdot\!\text{sinc}\!\left(\frac{\pi L_y\sin\theta\sin\phi}{\lambda}\right)$
+
+1st SL$=-13.5$ dB; HPBW$=0.886\lambda/L$; $D=4\pi L_x L_y/\lambda^2$
+
+\section*{DIRECTIVITY, GAIN, BEAM SOLID ANGLE}
+$D=U_\text{max}/U_\text{avg}=4\pi U_\text{max}/P_\text{rad}$;\quad $\Omega_A=4\pi/D\approx\Theta_E\Theta_H$
+
+$D\approx41253/(\Theta_E^\circ\Theta_H^\circ)$ (Kraus — fails for grating lobes or large sidelobes!)
+
+$G=\eta_\text{eff}D$;\quad $A_\text{eff}=G\lambda^2/4\pi=\eta_{ap}A_\text{phys}$
+
+\textbf{Exact:} $D=\frac{4\pi}{{\int_0^{2\pi}\!\int_0^\pi |F(\theta,\phi)|^2\sin\theta\,d\theta\,d\phi}/{|F_\text{max}|^2}}$
+
+\textbf{Aperture efficiency:} $\eta_{ap}=\frac{|\iint E\,dA|^2}{A_\text{phys}\iint|E|^2\,dA}$ — Schwartz proves max when $E=\text{const}$
+
+\section*{RECIPROCITY, EFF. LENGTH, CIRCUIT LINK}
+Receive pattern $\equiv$ transmit pattern. $A_\text{eff}=\lambda^2 D/4\pi$
+
+Open-circuit voltage: $V_\text{oc}=\vec{E}\cdot\vec{h}_\text{eff}=|E|h_\text{eff}\cos\alpha_\text{pol}$
+
+Matched load ($Z_L=Z_A^*$): $P_\text{rec}=|V_\text{oc}|^2/(8R_\text{rad})=S_\text{inc}\cdot A_\text{eff}$
+
+\textit{Example: short dipole ($h_\text{eff}=L/2$), $|E|=1$ V/m, $R_\text{rad}=20\pi^2(L/\lambda)^2$:
+$P=\frac{(L/2)^2}{8\cdot20\pi^2(L/\lambda)^2}=\frac{\lambda^2}{640\pi^2}$ W — same as reciprocity result!}
+
+\section*{FRIIS, POWER DENSITY, RADAR EQ.}
+\textbf{Friis (1-way):} $P_r=\frac{P_t G_t G_r\lambda^2}{(4\pi R)^2}=P_t G_t\frac{A_\text{eff,r}}{4\pi R^2}$
+
+\textbf{Power density:} $S=P_t G_t/(4\pi R^2)$;\quad $P_r=S\cdot A_\text{eff}$
+
+\textbf{Radar eq. (2-way):} $P_r=\frac{P_t G^2\lambda^2\sigma}{(4\pi)^3 R^4}=\frac{P_t A_\text{eff}^2\sigma}{4\pi\lambda^2 R^4}$
+
+\textit{Tip: both forms useful — use $G$ form if given gain in dB; use $A_\text{eff}$ form if given aperture.}
+
+\textbf{Solve for $R_\text{max}$:} $R_\text{max}^4=\frac{P_t G^2\lambda^2\sigma}{(4\pi)^3\cdot\text{SNR}\cdot k_B T B}$
+
+\textbf{Thermal noise:} $P_N=k_B T_\text{sys}B$;\quad SNR$=P_r/P_N$;\quad $k_B=1.38\times10^{-23}$ J/K
+
+\textit{Example: $P_t=0.1$ W, $G=293$, $\lambda=0.028$ m, $\sigma=0.2$ m$^2$, $T=1000$ K, $B=1$ kHz:
+$R_\text{max}=(P_t G^2\lambda^2\sigma/(4\pi)^3\cdot10\cdot k_B T B)^{1/4}\approx1.5$ km}
+
+%%%%%%%%%%% PAGE 1 COL 2 %%%%%%%%%%%
+\section*{POLARIZATION}
+$\hat{e}_\text{LCP}=(\hat{x}+j\hat{y})/\sqrt{2}$;\quad $\hat{e}_\text{RCP}=(\hat{x}-j\hat{y})/\sqrt{2}$
+
+Extract component: $E_L=\vec{E}\cdot\hat{e}_L^*$; $|E_L|^2/(2\eta_0)$ = LCP power density
+
+LCP antenna rejects RCP (and vice versa). Linear into circular: 3 dB loss.
+
+\textit{Example: $\vec{E}=E_0(3\hat{x}+2e^{j\pi/4}\hat{y})$; $E_L=\frac{E_0}{\sqrt{2}}(3-j2e^{j\pi/4})=\frac{E_0}{\sqrt{2}}(3+\sqrt{2}-j\sqrt{2})$; $|E_L|^2=\frac{E_0^2}{2}(13+6\sqrt{2})\approx10.74E_0^2$}
+
+Polarization loss: $P_\text{rec}=S_\text{inc}\cdot A_\text{eff}\cdot|\hat{e}_\text{inc}\cdot\hat{e}_\text{ant}^*|^2$
+
+\section*{ARRAYS — FULL EQUATIONS \& EXAMPLES}
+
+\subsection*{Uniform Linear Array (N elements, spacing $d$, phase $\alpha$)}
+$\psi=kd\cos\gamma+\alpha$;\quad $|AF|=\left|\frac{\sin(N\psi/2)}{N\sin(\psi/2)}\right|$ (normalized to 1)
+
+\textbf{Max} when $\psi=0$;\quad \textbf{Nulls} when $N\psi/2=m\pi$ ($m\neq0,N,2N$), i.e. $\psi_\text{null}=2m\pi/N$
+
+\textbf{Broadside} ($\alpha=0$): beam at $\gamma=90^\circ$; sidelobe at $3/2\cdot2\pi/N$ from main beam
+
+\textbf{Ordinary endfire} ($\alpha=-kd$): beam at $\gamma=0^\circ$; $\psi\in[-2kd,0]$
+
+\textbf{Hansen-Woodyard} ($\alpha=-kd-\pi/N$): $D\approx1.8\times$ ordinary endfire; first SL$\approx-10$ dB; $x=\pi$ rule-of-thumb, exact $x\to2.94$ large $N$
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$N+1$ & Conv $D$ & $x_\text{opt}$ & HW $D$\\
+\midrule
+5 & 7.4 & 1.94 & 10.6\\
+10 & 15.3 & 2.46 & 24.4\\
+20 & 31.3 & 2.71 & 53.0\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Dipole Arrays — Complete Pattern}
+\textbf{N-element z-dipole array along x-axis} (spacing $d$, phase $\alpha=0$ broadside):
+
+$P(\theta,\phi)=\underbrace{\left[\frac{\cos(\frac{\pi}{2}\cos\theta)}{\sin\theta}\right]^2}_\text{EF}\cdot\underbrace{\left[\frac{\sin(N\cdot\frac{\pi d}{\lambda}\sin\theta\cos\phi)}{N\sin(\frac{\pi d}{\lambda}\sin\theta\cos\phi)}\right]^2}_\text{AF}$
+
+E-plane ($\phi=\pi/2$, yz-plane): AF$=1$ everywhere $\Rightarrow$ pattern = EF alone (HPBW$=78^\circ$ for $\lambda/2$ dipole)
+
+H-plane ($\theta=\pi/2$, xy-plane): EF$=1$ $\Rightarrow$ pattern = AF alone; HPBW depends on $N$, $d$
+
+\textit{Tip: d close to $\lambda\Rightarrow$ grating lobes; Kraus estimator fails; use exact 2D integral for true $D$.}
+
+\textit{Example: 21-element z-dipole, $d=0.9\lambda$: HPBW$_H=2.7^\circ$, HPBW$_E=78^\circ$, Kraus$\approx196$ but exact $D\approx77$ due to grating lobes!}
+
+\subsection*{Half-Wave Dipole Array (x-directed dipoles, x-array)}
+EF for x-directed half-wave dipole: $EF(\theta,\phi)=\frac{\cos(\frac{\pi}{2}\sin\theta\cos\phi)}{\sqrt{1-\sin^2\theta\cos^2\phi}}$
+
+In E-plane ($\phi=0$, xz-plane): $EF=\cos(\frac{\pi}{2}\sin\theta)/\cos\theta$
+
+In H-plane ($\phi=\pi/2$, yz-plane): $EF=1$ (independent of $\theta$) $\Rightarrow$ H-plane pattern = AF only
+
+\subsection*{2D Planar Array ($N_x\times N_y$, spacings $d_x,d_y$)}
+$P(\theta,\phi)=|EF|^2\cdot|AF_x|^2\cdot|AF_y|^2\cdot|GPF|^2$
+
+$AF_x=\frac{\sin(N_x\psi_x/2)}{N_x\sin(\psi_x/2)}$;\quad$\psi_x=kd_x\sin\theta\cos\phi+\alpha_x$
+
+$AF_y=\frac{\sin(N_y\psi_y/2)}{N_y\sin(\psi_y/2)}$;\quad$\psi_y=kd_y\sin\theta\sin\phi+\alpha_y$
+
+\textit{Example: $5\times5$ x-dipole array, $d=\lambda/2$, $h=\lambda/4$ above ground:
+$kd=\pi$; $AF_x=\sin(\frac{5\pi}{2}\sin\theta\cos\phi)/\sin(\frac{\pi}{2}\sin\theta\cos\phi)$;
+GPF$=2\sin(\frac{\pi}{2}\cos\theta)$; null at horizon since $\sin(0)=0$; beam broadside $\theta=0$.}
+
+\textbf{Scan loss}: beam at $\theta_0$ $\Rightarrow$ HPBW widens by $\approx1/\cos\theta_0$.
+
+\subsection*{Ground Plane Factor (Image Theory)}
+Horizontal element at height $h$: GPF$=2\sin(kh\cos\theta)$ ($\alpha=\pi$ image)
+
+Vertical element at height $h$: GPF$=2\cos(kh\cos\theta)$ ($\alpha=0$ image)
+
+\textit{Tip: GPF forces null at $\theta=90^\circ$ for horizontal (sine), max at $\theta=90^\circ$ for vertical (cos, if $kh\cos90=0$). Check boundary!}
+
+\subsection*{Beam Steering}
+$\alpha_x=-kd_x\sin\theta_0\cos\phi_0$;\quad$\alpha_y=-kd_y\sin\theta_0\sin\phi_0$
+
+\textit{Example: steer to $\theta_0=25^\circ$, $\phi_0=90^\circ$ in y-array with $d=\lambda/2$: $\alpha_y=-\pi\sin25^\circ\approx-1.327$ rad $\approx-0.423\pi$}
+
+\section*{APERTURE EFFICIENCY \& TAPERING}
+
+\textbf{Schwartz}: $|\int AB\,ds|^2\leq\int|A|^2ds\cdot\int|B|^2ds$; equality iff $B=cA$ $\Rightarrow$ uniform max.
+
+\textbf{Tapering trade-off}: lower sidelobes $\leftrightarrow$ wider HPBW, lower $\eta_{ap}$, lower $D$.
+
+\textbf{Convolution theorem}: $E_\text{total}=E_1*E_2$ $\Rightarrow$ pattern$\propto|F_1|^2\cdot|F_2|^2$
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Aperture & SLL & HPBW & $\eta_{ap}$\\
+\midrule
+Uniform (1D) & $-13.5$ dB & $0.886\lambda/L$ & 1.0\\
+Triangular (1D) & $-27$ dB & $1.27\lambda/L$ & 0.75\\
+Uniform circ & $-17.6$ dB & $1.02\lambda/D$ & 1.0\\
+Cosine$^1$ circ & lower & wider & 0.72\\
+Cosine$^2$ circ & much lower & wider & 0.51\\
+Quadratic taper & $-26$ dB & matches unif & $\approx0.50$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textit{Triangular = rect$*$rect (each $L/2$). Power pattern $=\text{sinc}^4(kL\sin\theta/4)$, where sinc$^2$ from each rect.}
+
+\textbf{Fraunhofer boundary:} $r_0=2D^2/\lambda$ ($D$=max linear dimension, NOT directivity!). At $r\gg r_0$: sinc$^2$ pattern. At $r\ll r_0$: flat ``searchlight'' beam with phase ripple.
+
+%%%%%%%%%%% PAGE 1 COL 3 %%%%%%%%%%%
+\section*{NOISE: CASCADE, SKY, CABLES}
+\textbf{Friis cascade} (referred to stage-1 input):
+$T_\text{sys}=T_1+\frac{T_2}{G_1}+\frac{T_3}{G_1 G_2}+\cdots$\quad First stage dominates!
+
+\textbf{Lossy cable} ($\varepsilon=10^{-L_\text{dB}/10}$, physical temp $T_p=300$ K):
+\begin{itemize}
+\item Referred to cable input: $T_\text{cab,in}=\frac{1-\varepsilon}{\varepsilon}T_p=(L-1)T_p$
+\item Referred to cable output: $T_\text{cab,out}=(1-\varepsilon)T_p$
+\end{itemize}
+
+\textbf{System} (ant $\to$ cable $\to$ receiver):
+$T_\text{sys}=T_\text{sky}+\frac{1-\varepsilon}{\varepsilon}T_p+\frac{1}{\varepsilon}T_\text{rec}$
+
+\textbf{LNA at antenna} (ant $\to$ LNA $\to$ cable $\to$ stages):
+$T_\text{sys}=T_\text{sky}+T_1+\frac{1-\varepsilon}{\varepsilon}\frac{T_p}{G_1}+\frac{T_2}{G_1\varepsilon}+\cdots$ (dramatic improvement!)
+
+\textit{Example: RG-8, 50 m at 400 MHz: $L_\text{dB}=5\times1.64=8.2$ dB, $\varepsilon=0.15$. $T_\text{sys}=50+5.67(300)+6.67(42)=2031$ K. Move LNA first: $T_\text{sys}\approx120$ K — 17$\times$ better!}
+
+\section*{RANGE, DOPPLER, ALIASING}
+\textbf{True range:} $R=c\,t_\text{true}/2$;\quad $t_\text{true}=t_\text{obs}+n\cdot T_\text{IPP}$
+
+\textbf{Max unambiguous range:} $R_\text{unamb}=c\cdot T_\text{IPP}/2$
+
+\textbf{Doppler:} $f_d=2v_r/\lambda$ (approaching $\to$ positive $f_d$); $v_r=\lambda f_d/2$
+
+\textbf{Max unambiguous Doppler/vel:} $|f_d|\leq\text{PRF}/2$; $|v|\leq\lambda\cdot\text{PRF}/4$
+
+\textbf{De-alias range} (2 IPPs, find smallest $n_1,n_2\geq0$):
+$t_1+n_1 T_1=t_2+n_2 T_2$; try $n_1=0,1,2\ldots$ until integer $n_2$ found.
+
+\textit{Example: IPP$_1=500\,\mu$s, $t_1=300\,\mu$s; IPP$_2=400\,\mu$s, $t_2=200\,\mu$s: $300+500n_1=200+400n_2\Rightarrow 4n_2-5n_1=1\Rightarrow n_1=3,n_2=4\Rightarrow t_\text{true}=1800\,\mu$s$\Rightarrow R=270$ km}
+
+\textbf{De-alias Doppler} (2 PRFs, $m$ can be $\pm$):
+$f_1+m_1\text{PRF}_1=f_2+m_2\text{PRF}_2$; find smallest $|f_\text{true}|$
+
+\textit{Example: PRF$_1=2000$ Hz, $f_1=+400$ Hz; PRF$_2=2500$ Hz, $f_2=+900$ Hz: $4m_1-5m_2=1\Rightarrow m_1=-1,m_2=-1\Rightarrow f_\text{true}=-1600$ Hz}
+
+\section*{OVERSPREAD TARGETS}
+Overspread if $\tau_\text{max}\cdot B_D>1$:
+$\tau_\text{max}=2L/c$;\quad$B_D=4\Omega y f_0/c$;\quad$\tau_\text{max}B_D=8R^2\Omega f_0/c^2$
+
+$f_\text{thresh}=c^2/(8R^2\Omega)$ (below = underspread)
+
+Small angle cap: $\theta_\text{max}=(c^2/4R^2\Omega f_0)^{1/3}$;\quad $L\approx R\theta^2/2$;\quad $y\approx R\theta$
+
+\textit{Example: Mars, $R=3400$ km, $\Omega=7.06\times10^{-5}$ rad/s, $f_0=2.38$ GHz: $f_\text{thresh}=13.8$ MHz; both 2.38 GHz and 430 MHz $\gg f_\text{thresh}$ $\Rightarrow$ severely overspread. Restrict to $\theta_\text{max}=0.226$ rad $\Rightarrow$ $L=87$ km, $2y=1530$ km.}
+
+\section*{PULSE COMPRESSION \& CODES}
+\textbf{Key metrics:} CR$=N$ (baud count); $\Delta R=cT_c/2$; bandwidth $B\approx1/T_c$; SLL$=20\log_{10}(\text{peak sidelobe}/N)$ dB
+
+\textbf{Autocorrelation:} $R(k)=\sum_n x[n]x[n+k]$; peak$=N$; matched filter output$=$ACF
+
+\textbf{Barker codes:} all sidelobes $=\pm1$; aperiodic ACF ideal. Longest known: $N=13$, SLL$=-22.3$ dB.
+
+\begin{center}\begin{tabular}{ccc}
+\toprule$N$&Sequence&SLL\\\midrule
+2&$++$&$-6$ dB\\3&$++-$&$-9.5$ dB\\4&$+++-$&$-12$ dB\\5&$+++-+$&$-14$ dB\\7&$+++--+-$&$-16.9$ dB\\11&$+++---+--+-$&$-20.8$ dB\\13&$+++++--++-+-+$&$-22.3$ dB\\\bottomrule
+\end{tabular}\end{center}
+
+\textbf{Compound code $B_{NM}$}: outer $B_N$ baud$\to$inner $B_M$; outer$+\to B_M$; outer$-\to\overline{B_M}$; CR$=NM$. 
+\textit{$B_{43}$: outer $B_4=(+,+,-,+)$, inner $B_3=(+,+,-)$: $(+,+,-,+,+,-,-,-,+,+,+,-)$; SLL$=-9.5$ dB, CR$=12$}
+
+\textbf{Complementary pair} $(A,B)$: $R_A(k)+R_B(k)=0$ for $k\neq0$; must transmit both and sum.
+
+Build recursively: $A_{n+1}=A_n\|B_n$;\quad $B_{n+1}=A_n\|\overline{B_n}$
+
+$A_1=(+,+)$, $B_1=(+,-)$; $A_2=(+,+,+,-)$, $B_2=(+,+,-,+)$; $A_3=(+,+,+,-,+,+,-,+)$
+
+\textbf{m-sequences (LFSR)}: $p$ stages $\Rightarrow N=2^p-1$; periodic ACF: peak$=N$ at $k=0\pmod{N}$, $-1$ elsewhere; choose $p$ so $N\tau\leq T_\text{IPP,max}$
+
+\textit{Mars example: need $T_\text{IPP}\leq583\,\mu$s with $\tau=4\,\mu$s: $p=7\Rightarrow N=127$, IPP$=508\,\mu$s $<583\,\mu$s $\checkmark$}
+
+\section*{AMBIGUITY FUNCTION}
+$|\chi(\tau,\nu)|=|\int p(t)p^*(t-\tau)e^{j2\pi\nu t}dt|$
+
+$\tau=0$ cut: $\approx\text{sinc}(\nu T_\text{total})$ (freq response; width$\propto1/T_\text{total}$)
+
+$\nu=0$ cut: standard ACF (range profile; width$=T_c$ for coded pulse)
+
+Ideal: single thumbtack at $(0,0)$; Woodward theorem: $\iint|\chi|^2 d\tau\,d\nu=1$ (volume conserved — sharpening one dim widens another)
+
+Barker: great $\nu=0$ cut; degrades rapidly off-axis (Doppler sensitive)
+
+m-sequence: good periodic ACF; also Doppler vulnerable for large $\nu$
+
+\section*{IONOSPHERIC PROPAGATION}
+\textbf{Secant Law / MUF:} $f_p\approx9\sqrt{N_\text{max}}$ Hz;\quad \bx{\text{MUF}=f_p\sec\psi_i=f_p/\cos\psi_i}
+
+Operate at $f\leq\text{MUF}$; $f>\text{MUF}\Rightarrow$ wave escapes to space.
+
+\textbf{Ionospheric geometry} (law of sines in Earth-ionosphere triangle):
+$\bx{\left(1+\frac{h'}{R_e}-\cos\theta\right)\csc\theta=\cot\psi_i};\quad\theta=\frac{d/2}{R_e}$ (rad)
+
+Elevation angle: $\beta=90^\circ-\theta-\psi_i$ (above local horizon)
+
+\textit{Example: $d_\text{total}=6760$ km, 2 hops, $h'=300$ km: $d=3380$ km, $\theta=1690/6371=0.265$ rad$=15.2^\circ$; $\cot\psi_i=(1+0.0471-0.9650)/0.2622=0.313\Rightarrow\psi_i=72.6^\circ$; $\beta=90-15.2-72.6=2.2^\circ$.
+Day ($N_\text{max}=10^{12}$): MUF$=9\times10^6/0.299=30.1$ MHz.
+Night ($N_\text{max}=10^{11}$): MUF$=2.846\times10^6/0.299=9.5$ MHz.}
+
+\textbf{Generalized Snell's Law} (stratified, $n=n(y)$):
+$n(y)\sin\theta(y)=n_0\sin\theta_0=\text{const}$
+
+$\frac{dx}{dy}=\frac{\sin\theta_0}{\sqrt{n^2(y)-\sin^2\theta_0}}$;\quad turning point: $n^2(y)=\sin^2\theta_0$
+
+$\int\frac{du}{\sqrt{a^2-u^2}}=\arcsin(u/a)$\quad (key integral for ray tracing)
+
+For $n^2=1-y^2$: $y(x)=\cos\theta_0\sin(x/\sin\theta_0)$; max depth $y_\text{max}=\cos\theta_0$; emerges at $x=\pi\sin\theta_0$. Reaches $n=0$ only at $\theta_0=0^\circ$.
+
+%%% PAGE 2 BEGINS — NEW COLUMNS %%%
+\columnbreak
+
+\section*{COHERENT/INCOHERENT INTEGRATION}
+\textbf{Coherent} ($N$-pt FFT): SNR gain$=N$; $\Delta f_\text{bin}=\text{PRF}/N$; $T_\text{FFT}=N\cdot T_\text{IPP}$; match $\Delta f_\text{bin}$ to target spectral width. Signal power $\propto N^2$, noise power $\propto N$.
+
+\textbf{Incoherent} ($K$ spectra): variance $\propto1/\sqrt{K}$; $K\leq T_\text{dwell}/T_\text{FFT}$; $T_\text{dwell}=\Delta R/v$
+
+\textit{Example: $f=300$ MHz, $\tau=20\,\mu$s, IPP$=2$ ms, $v=40$ m/s, $\Delta f_\text{spec}=2$ Hz:
+$\Delta R=c\tau/2=3$ km; $T_\text{dwell}=3000/40=75$ s; need $500/2^n=2$ Hz $\Rightarrow$ $n=8$, $N=256$; gain$=10\log256=24$ dB; $-20+24=+4$ dB SNR. $K=75/0.512=146$ spectra for incoherent avg.}
+
+\section*{RICIAN DISTRIBUTION}
+$P(|V|)=\frac{|V|}{\sigma^2}\exp\!\!\left(-\frac{|V|^2+|V_0|^2}{2\sigma^2}\right)\!I_0\!\!\left(\frac{|V||V_0|}{\sigma^2}\right)$
+
+Low SNR ($|V_0|\ll\sigma$): $I_0\approx1\Rightarrow$ Rayleigh: $P(|V|)=\frac{|V|}{\sigma^2}e^{-|V|^2/2\sigma^2}$
+
+High SNR ($|V_0|\gg\sigma$): $I_0(x)\approx e^x/\sqrt{2\pi x}\Rightarrow$ Gaussian at $|V_0|$ with variance $\sigma^2$
+
+Joint to polar: area element $dx\,dy=|V|d|V|d\phi$; integrate out $\phi$ using $\int_0^{2\pi}e^{c\cos\phi}d\phi=2\pi I_0(c)$.
+
+\section*{MATCHED FILTER}
+$h(t)=K\cdot F^*(t_0-t)$ (time-reversed conjugate of transmitted signal, delayed by $t_0$)
+
+Output $y(t)=f(t)*h(t)=$ cross-correlation of received with transmitted; peak $\propto$ total pulse energy.
+
+\textit{Example: $F(t)=+1$ on $[0,\tau]$, $-1$ on $[\tau,3\tau]$: $h(t)=-1$ on $[0,2\tau]$, $+1$ on $[2\tau,3\tau]$. Peak output $= 1^2\cdot\tau+(-1)^2\cdot2\tau=3\tau$ at $t_0=3\tau$. Zero at $\Delta=\pm\tau$ (phase cancellation). Piecewise linear ACF with max sidelobe $=-\tau$ at $\Delta=2\tau$.}
+
+\section*{ARRAY FACTOR — ADDITIONAL DETAILS}
+\textbf{3-element endfire array} (max $+x$, null $-x$): $\alpha=-kd$; null at $\phi=\pi$: need $\psi(\pi)=-2kd=2m\pi/3\Rightarrow d=m\lambda/6$; primary: $d=\lambda/6$, $\alpha=-\pi/3$.
+
+\textbf{Pattern} $=|\sin(\frac{3}{2}\psi)/\sin(\frac{1}{2}\psi)|$; at $\phi=0$: $\psi=0\Rightarrow AF=3$ (max); at $\phi=\pi$: $\psi=-2kd=-2\pi/3\Rightarrow\sin(-\pi)=0\Rightarrow$ null $\checkmark$
+
+\textbf{HPBW shortcuts:}
+\begin{itemize}
+\item Uniform circular aperture: HPBW$=1.02\lambda/D$ (rad)
+\item Uniform rectangular: HPBW$=0.886\lambda/L$ (rad)
+\item Triangular (1D): HPBW$=1.27\lambda/L$ (rad)
+\item Half-wave dipole: HPBW$=78^\circ$ (E-plane only)
+\item Broadside N-element, $d=\lambda/2$: HPBW$\approx2\lambda/(Nd)=2/N$ rad
+\end{itemize}
+
+\textbf{First null location} (N-element uniform array): $\sin\theta_\text{null}=\lambda/(Nd)$ (broadside)
+
+\section*{COMPLETE WORKED EXAMPLES}
+
+\subsection*{Aperture Efficiency (Circular, $D=133\lambda$, $E\propto\cos^n(\pi r/D)$)}
+$A_\text{phys}=\pi(D/2)^2=13893\lambda^2$; $D_\text{max}(\eta_{ap}=1)=\pi^2(133)^2\approx174577$
+
+$\eta_{ap}=(\text{avg}[n])^2/\text{avg}[2n]$ where avg$[n]=\frac{8}{\pi^2}\int_0^{\pi/2}x\cos^n x\,dx$: avg$[0]=1$, avg$[1]=0.463$, avg$[2]=0.297$, avg$[4]=0.172$
+
+$n=0$: $\eta=1.0$, $D=52.4$ dBi; $n=1$: $\eta=0.72$, $D=51.0$ dBi; $n=2$: $\eta=0.51$, $D=49.5$ dBi
+
+HPBW: $\sqrt{4\pi/D}$ rad; $n=0$: $0.48^\circ$; $n=1$: $0.57^\circ$; $n=2$: $0.68^\circ$
+
+\subsection*{ALTAIR Aperture ($a=25\lambda$, $\lambda=1$ m, $D=50\lambda$)}
+$k a=50\pi$; $A_\text{eff}=\pi(25)^2=1963.5$ m$^2$; $D=4\pi A_\text{eff}/\lambda^2=24674$ ($43.9$ dBi)
+
+HPBW$=1.02/(50)=0.0204$ rad$=1.17^\circ$; 1st null: $\theta=3.832/(50\pi)=0.0244$ rad; SL$=-17.6$ dB
+
+$G_{BS}=G_\text{max}/2=12337$ ($40.9$ dBi); $A_{BS}=A_\text{eff}/2=981.75$ m$^2$ (backscatter, used twice)
+
+\subsection*{SETI Link Budget (Arecibo $\to$ Tau Ceti)}
+$G=73$ dBi$\to G_\text{lin}=10^{7.3}\approx2\times10^7$; $A_\text{eff}=G\lambda^2/4\pi=(2\times10^7)(0.12)^2/(4\pi)=2.29\times10^4$ m$^2$
+
+$P_r=P_t G_t A_\text{eff,r}/(4\pi R^2)=(10^6)(2\times10^7)(2.29\times10^4)/(4\pi(1.04\times10^{17})^2)=3.36\times10^{-19}$ W
+
+$T_\text{sys}=10+38=48$ K; $N_0=k_B T=6.62\times10^{-22}$ W/Hz; $B=P_r/(\text{SNR}\cdot N_0)=50.7$ Hz $\approx50$ bit/s
+
+Cost: $t=40/50=0.8$ s per word; $E=10^6\times0.8=8\times10^5$ J$=0.222$ kWh; cost$=\$0.033$/word
+
+\textit{Key insight: cost is independent of $P_t$ (doubling $P_t\Rightarrow$ doubles $B\Rightarrow$ halves $t\Rightarrow$ same energy)}
+
+\section*{BACKSCATTER \& RADAR CROSS-SECTION}
+\textbf{Distributed volume} (antenna used twice):
+$P_r=\frac{P_t A_\text{eff}^2\sigma_v\Delta V}{4\pi\lambda^2 R^4}$;\quad $G_{BS}=G_\text{max}/2$;\quad $A_{BS}=A_\text{eff}/2$
+
+\textbf{Radar detector advantage} (1-way vs 2-way): detector $\propto1/R^2$; radar echo $\propto1/R^4$.
+
+\textit{Police radar example: $P_t=0.1$ W, $G=293$, $f=10.55$ GHz, $\sigma=0.2$ m$^2$, $T=1000$ K, $B=1$ kHz: $R_\text{max}=(P_t G^2\lambda^2\sigma/(4\pi)^3\cdot P_{N,\text{min}})^{1/4}=1.5$ km. Detector (1-way, $G_\text{det}=4$, $T_\text{det}=5000$ K, $B=10$ kHz): $R_\text{det}=(P_t A_\text{eff,rad}G_\text{det}/(4\pi P_{r,\text{det}}))^{1/2}=294$ km! Earth curvature limits practical range.}
+
+\section*{QUICK-REFERENCE CONSTANTS \& CONVERSIONS}
+$c=3\times10^8$ m/s;\quad$k_B=1.38\times10^{-23}$ J/K;\quad$\eta_0=120\pi\,\Omega$;\quad 1 kWh$=3.6\times10^6$ J
+
+$G[\text{lin}]=10^{G_\text{dB}/10}$;\quad$V[\text{lin}]=10^{V_\text{dB}/20}$;\quad$\varepsilon=10^{-L_\text{dB}/10}$;\quad$\lambda=c/f$
+
+$\int\cos^n\theta\sin\theta\,d\theta=-\cos^{n+1}\theta/(n+1)$;\quad$\int re^{-ar^2}dr=-e^{-ar^2}/(2a)$
+
+Euler: $e^{j\theta}=\cos\theta+j\sin\theta$;\quad$\sin(\pi-x)=\sin x$;\quad$\csc\theta=1/\sin\theta$;\quad$\cot\psi=\cos\psi/\sin\psi$
+
+$\int_0^\pi\sin^3\theta\,d\theta=4/3$;\quad$\int_0^\pi\frac{\cos^2(\frac{\pi}{2}\cos\theta)}{\sin\theta}d\theta=1.219$
+
+\textbf{dB shortcuts}: $3\text{ dB}=2\times$;\quad$6\text{ dB}=4\times$;\quad$10\text{ dB}=10\times$;\quad$20\text{ dB}=100\times$;\quad$30\text{ dB}=1000\times$
+
+\textbf{PRF/IPP:} PRF$=1/T_\text{IPP}$;\quad$f_d=2v_r/\lambda$;\quad$v_\text{unamb}=\lambda\cdot\text{PRF}/4$;\quad$R_\text{unamb}=cT_\text{IPP}/2$
+
+\section*{TIPS \& COMMON MISTAKES}
+\begin{itemize}
+\item \textbf{$D$ vs. $D$}: Fraunhofer $r_0=2D^2/\lambda$ — $D$ is aperture size, NOT directivity!
+\item \textbf{Grating lobes}: $d\geq\lambda$ $\Rightarrow$ avoid; Kraus estimator breaks; use exact 2D integral.
+\item \textbf{Phase at main beam}: always check $\psi=0$ gives your intended direction.
+\item \textbf{Endfire vs broadside}: endfire $\alpha=-kd$ (beam along array axis); broadside $\alpha=0$ (beam $\perp$ array).
+\item \textbf{Ground plane image phase}: horizontal = opposite phase ($\pi$); vertical = same phase.
+\item \textbf{Two-way vs one-way}: radar echo $\propto R^{-4}$; communication $\propto R^{-2}$; detector $\propto R^{-2}$.
+\item \textbf{LNA placement}: always put lowest-noise amplifier first; cable loss before LNA kills SNR.
+\item \textbf{Overspread}: product $\tau_\text{max}B_D>1$ $\Rightarrow$ cannot map entire target; restrict angular range.
+\item \textbf{Complementary codes}: must transmit and receive BOTH $A$ and $B$ pulses; then sum ACFs.
+\item \textbf{m-sequence length}: $N=2^p-1$ (NOT $2^p$); IPP$=N\tau_\text{baud}$.
+\item \textbf{Compound code SLL}: degrades from inner Barker; SLL not ideal like individual Barker.
+\item \textbf{MUF}: frequency must be $\leq$MUF to reflect; $>$MUF $\Rightarrow$ lost to space. MUF increases with $\sec\psi_i$ (oblique paths have higher MUF).
+\item \textbf{Polarization}: always decompose into same basis as antenna; LCP antenna $\perp$ RCP.
+\item \textbf{Aperture efficiency direct}: $\eta_{ap}=|\int E\,dA|^2/(A_\text{phys}\int|E|^2 dA)$ — can compute directly or via $D\lambda^2/4\pi A_\text{phys}$.
+\item \textbf{HPBW} from $D$: $\text{HPBW}\approx\sqrt{4\pi/D}$ rad only for symmetric pencil beams.
+\item \textbf{Scan loss}: steering to $\theta_0$ widens beam: HPBW$_\text{steered}\approx\text{HPBW}_0/\cos\theta_0$.
+\end{itemize}
+
+\end{multicols}
+\end{document}
